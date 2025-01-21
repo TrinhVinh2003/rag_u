@@ -102,8 +102,8 @@ async def evaluate_acc(request: AccEval) -> JSONResponse:
             detail=f"Failed to load data from the provided URL: {e!s}",
         ) from e
 
-    correct_predictions = 0
-    total_predictions = 0
+    correct_predictions = 0 # the number of correct predictions
+    total_predictions = 0 # total prediction
     vector_store = VectorStore()
 
     logging.info("Evaluating accuracy based on the Rag system's search results.")
