@@ -125,14 +125,9 @@ def load_excel_url(file_path: str) -> pd.DataFrame:
         export_url = f"https://docs.google.com/spreadsheets/d/{sheet_id}/export?format=csv&gid={gid}"
 
         # Read the CSV data from the export URL into a DataFrame
-        try:
-            return pd.read_csv(export_url)
-        except pd.errors.EmptyDataError:
-            raise ValueError("The Google Sheets file is empty or has no data.") from None  # noqa: E501
-        except pd.errors.ParserError:
-            raise ValueError("Failed to parse the Google Sheets file. Ensure the file is in CSV format.") from None  # noqa: E501
-        except Exception as e:
-            raise ValueError(f"Failed to load data from Google Sheets: {e}") from e
+    
+        return pd.read_csv(export_url)
+
 
     except ValueError as ve:
         logging.error(ve)
